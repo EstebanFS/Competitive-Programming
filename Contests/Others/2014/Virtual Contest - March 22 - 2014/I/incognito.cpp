@@ -27,29 +27,28 @@ template <class T> int toInt(const T &x)
 { stringstream s; s << x; int r; s >> r; return r;}
 
 #define D(x) cout << #x " is " << x << endl
+#define ll long long
 
-void reverse(string word){
-	for (int i = word.size() - 1; i >= 0; --i)printf("%c", word[i]);
-}
+
 
 int main(){
-	string line;
-	while (getline (cin, line)){
-		stringstream ss(line);
-		string word;
-		ss >> word;
-		if (word.size() == 1)cout << word;
-		else reverse (word);
-		while (ss >> word){
-			printf(" ");
-			if (word.size() == 1)cout << word;
-			else reverse (word);	
-		}
-		printf("\n");
-	}
+    int cases;
+    cin>>cases;
+    for(int i=0; i< cases ; i++){
+        int objects;
+        cin >> objects;
+        map <string, int> categories;
+        for(int j=0;j<objects;j++){
+            string name, categorie;
+            cin >> name >> categorie;
+            categories[categorie] += 1; 
+        }
+        ll ans = 1;
+        for (std::map<string,int>::iterator it=categories.begin(); it!=categories.end(); ++it){
+            ans *= (it->second+1);
+        }
+        cout << ans -1 << endl;  
+    }
+
 	return 0;
 }
-
-
-
-

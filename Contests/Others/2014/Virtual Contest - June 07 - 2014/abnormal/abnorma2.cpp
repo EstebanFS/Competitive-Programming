@@ -28,28 +28,33 @@ template <class T> int toInt(const T &x)
 
 #define D(x) cout << #x " is " << x << endl
 
-void reverse(string word){
-	for (int i = word.size() - 1; i >= 0; --i)printf("%c", word[i]);
+bool isPal(char* s, int n){
+    for (int i = n / 2; i > -1; --i)
+        if (s[i] != s[n - i - 1])
+            return false;
+    return true;
 }
+
+bool isAl(char* s, int n){
+    for(int i=1; i<n; i++){
+        if(isPal(s , i)&& isPal(s + i,n - i))return true;       
+    }
+    return false;
+}
+
+
 
 int main(){
-	string line;
-	while (getline (cin, line)){
-		stringstream ss(line);
-		string word;
-		ss >> word;
-		if (word.size() == 1)cout << word;
-		else reverse (word);
-		while (ss >> word){
-			printf(" ");
-			if (word.size() == 1)cout << word;
-			else reverse (word);	
-		}
-		printf("\n");
-	}
+    int nCase, n;
+    scanf("%d", &nCase);
+    char* line = new char[200000];
+    while (nCase--) {
+        scanf("%s", line);
+        n = strlen(line);
+        if(isAl(line, n))printf("alindrome\n");
+        else if (isPal(line,n))printf("palindrome\n");
+        else printf("simple\n");
+    }
 	return 0;
 }
-
-
-
 

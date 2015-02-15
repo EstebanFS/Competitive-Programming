@@ -27,29 +27,32 @@ template <class T> int toInt(const T &x)
 { stringstream s; s << x; int r; s >> r; return r;}
 
 #define D(x) cout << #x " is " << x << endl
+int right(string x,int n){
+    for(int i=0; i<(x.size()-n);i++)cout << "RIGHT" << endl;
+    for(int i=x.size()-1; i>0; i--){
+        printf("PRINT %c\n",x[i]);
+        printf("LEFT\n");
+    }
+    printf("PRINT %c\n",x[0]);
+    return 0;
+}
 
-void reverse(string word){
-	for (int i = word.size() - 1; i >= 0; --i)printf("%c", word[i]);
+int left(string x,int n){
+    for(int i=0; i<n-1 ;i++)cout << "LEFT" << endl;
+    for(int i=0; i<x.size()-1; i++){
+        printf("PRINT %c\n",x[i]);
+        printf("RIGHT\n");
+    }
+    printf("PRINT %c\n",x[x.size()-1]);
+    return 0;
 }
 
 int main(){
-	string line;
-	while (getline (cin, line)){
-		stringstream ss(line);
-		string word;
-		ss >> word;
-		if (word.size() == 1)cout << word;
-		else reverse (word);
-		while (ss >> word){
-			printf(" ");
-			if (word.size() == 1)cout << word;
-			else reverse (word);	
-		}
-		printf("\n");
-	}
+    int n,k;
+    while(cin>>n>>k){
+     string slogan;cin >> slogan;
+     if(k>(n/2))right(slogan,k);
+     else left(slogan,k);   
+    }
 	return 0;
 }
-
-
-
-

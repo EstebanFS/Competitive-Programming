@@ -27,26 +27,40 @@ template <class T> int toInt(const T &x)
 { stringstream s; s << x; int r; s >> r; return r;}
 
 #define D(x) cout << #x " is " << x << endl
-
-void reverse(string word){
-	for (int i = word.size() - 1; i >= 0; --i)printf("%c", word[i]);
-}
+#define ll long long
+#define pii pair<char, int>
 
 int main(){
-	string line;
-	while (getline (cin, line)){
-		stringstream ss(line);
-		string word;
-		ss >> word;
-		if (word.size() == 1)cout << word;
-		else reverse (word);
-		while (ss >> word){
-			printf(" ");
-			if (word.size() == 1)cout << word;
-			else reverse (word);	
+	int t;
+	int x = 1;
+	cin >> t;
+	while(t--){
+		string n;
+		cin >> n;
+		pii maxi = pii(n[0], 0);
+		pii mini = pii(n[0], 0);
+		for(int i = 1; i < n.size(); ++i){
+			if(n[i] != '0' && n[i] > maxi.first){
+				maxi.first = n[i];
+				maxi.second = i;
+			}
+			if(n[i] != '0' && n[i] < mini.first){
+				mini.first = n[i];
+				mini.second = i;
+			}			
 		}
-		printf("\n");
+		string ansMax = n;
+		string ansMin = n;
+		char aux;
+		aux = ansMax[0];
+		ansMax[0] = maxi.first;
+		ansMax[maxi.second] = aux;
+		aux = ansMin[0];
+		ansMin[0] = mini.first;
+		ansMin[mini.second] = aux;
+		printf("Case #%d: %s %s\n",x++, ansMin.c_str(), ansMax.c_str());
 	}
+
 	return 0;
 }
 

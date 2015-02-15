@@ -28,28 +28,22 @@ template <class T> int toInt(const T &x)
 
 #define D(x) cout << #x " is " << x << endl
 
-void reverse(string word){
-	for (int i = word.size() - 1; i >= 0; --i)printf("%c", word[i]);
-}
-
 int main(){
-	string line;
-	while (getline (cin, line)){
-		stringstream ss(line);
-		string word;
-		ss >> word;
-		if (word.size() == 1)cout << word;
-		else reverse (word);
-		while (ss >> word){
-			printf(" ");
-			if (word.size() == 1)cout << word;
-			else reverse (word);	
-		}
-		printf("\n");
-	}
+    int cases; cin >> cases;
+    for(int i=1; i<= cases; i++){
+        double c,x,f,realf; 
+        cin >> c >> f >> x;
+        realf = 2;
+        double aux1=0, aux2=0, save=0;
+        aux1 = x/realf; aux2 = (c/realf)+(x/(realf+f));
+        save = (c/realf); realf += f;
+        while(aux1 > aux2){
+            aux1 = aux2;
+            aux2 = save + (c/realf) + (x/(realf+f));
+            save += (c/realf);
+            realf += f;
+        }
+        printf("Case #%d: %.7f\n", i, aux1);    
+    }
 	return 0;
 }
-
-
-
-

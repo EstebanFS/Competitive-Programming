@@ -27,25 +27,31 @@ template <class T> int toInt(const T &x)
 { stringstream s; s << x; int r; s >> r; return r;}
 
 #define D(x) cout << #x " is " << x << endl
-
-void reverse(string word){
-	for (int i = word.size() - 1; i >= 0; --i)printf("%c", word[i]);
-}
+#define ll long long
 
 int main(){
-	string line;
-	while (getline (cin, line)){
-		stringstream ss(line);
-		string word;
-		ss >> word;
-		if (word.size() == 1)cout << word;
-		else reverse (word);
-		while (ss >> word){
-			printf(" ");
-			if (word.size() == 1)cout << word;
-			else reverse (word);	
+	int t, n;
+	cin >> t;
+	while (t--){
+		cin >> n;
+		int cities[n];
+		ll sum[n];
+		for (int i = 0; i < n; ++i) cin >> cities[i];
+		sum[0] = cities[0];
+		for (int i = 1; i < n; ++i) sum[i] = sum[i-1] + cities[i];
+		ll total = sum[n-1];
+		ll maxi = total;
+		for (int i = 0; i < n; ++i){
+			for (int j = 0; j < (n-i); ++j){
+				ll depreciate = sum[j+i];
+				ll rest;
+				if ((j-1) < 0) rest = 0;
+				else rest = sum[j-1]; 
+				//printf ("El depreciate es: %d, el rest es: %d y el total es: %d\n", depreciate, rest, total);
+				maxi = max(maxi, total - depreciate + rest);
+			}
 		}
-		printf("\n");
+		cout << maxi << endl;
 	}
 	return 0;
 }

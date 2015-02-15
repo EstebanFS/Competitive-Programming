@@ -27,29 +27,36 @@ template <class T> int toInt(const T &x)
 { stringstream s; s << x; int r; s >> r; return r;}
 
 #define D(x) cout << #x " is " << x << endl
+#define MAXN 200
+int cubes[MAXN];
+int sum[MAXN];
 
-void reverse(string word){
-	for (int i = word.size() - 1; i >= 0; --i)printf("%c", word[i]);
+int buildP(){
+    cubes[0] = 1;
+    sum[0] = 1;
+    for(int i = 1; i < MAXN; ++i){
+        cubes[i] = cubes[i-1] + (i+1); 
+        sum[i] = sum[i-1] + cubes[i];
+    }
+    //for(int i = 0; i < MAXN; ++i)cout << "Index: " << i << " value: " << sum[i] << endl;
+    return 0;
+}
+
+
+int findElement(int e){
+    for(int i = 0; i < MAXN; ++i){
+        if(sum[i] == e) return i;
+        if(e < sum[i]) return i-1;
+    }
+    return 0;
 }
 
 int main(){
-	string line;
-	while (getline (cin, line)){
-		stringstream ss(line);
-		string word;
-		ss >> word;
-		if (word.size() == 1)cout << word;
-		else reverse (word);
-		while (ss >> word){
-			printf(" ");
-			if (word.size() == 1)cout << word;
-			else reverse (word);	
-		}
-		printf("\n");
-	}
+    buildP();
+    int nCube;
+    cin >> nCube;
+    cout << findElement(nCube) + 1 << endl;   
 	return 0;
 }
-
-
 
 

@@ -1,0 +1,23 @@
+cs Pepik
+en Johnny
+Nuzky Scissors
+Papir Rock
+Papir Scissors
+-
+cs Pepik
+en Johnny
+Nuzky Scissors
+Papir Rock
+Papir Scissors
+-
+cs hola
+en ssss 
+Nuzky Scissors
+Papir Rock
+Papir Scissors
+-
+de Gertruda
+cs Lenka
+Stein Papir
+Schere Kamen
+.

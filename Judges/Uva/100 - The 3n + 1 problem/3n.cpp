@@ -28,24 +28,23 @@ template <class T> int toInt(const T &x)
 
 #define D(x) cout << #x " is " << x << endl
 
-void reverse(string word){
-	for (int i = word.size() - 1; i >= 0; --i)printf("%c", word[i]);
-}
-
 int main(){
-	string line;
-	while (getline (cin, line)){
-		stringstream ss(line);
-		string word;
-		ss >> word;
-		if (word.size() == 1)cout << word;
-		else reverse (word);
-		while (ss >> word){
-			printf(" ");
-			if (word.size() == 1)cout << word;
-			else reverse (word);	
+	int a, b;
+	while (cin >> a >> b){
+		printf ("%d %d ",a , b);
+		int maxi = 0;
+		if (b < a) swap (a, b);
+		for (int i = a; i <= b; ++i){
+			int n = i;
+			int count = 1;
+			while (n != 1){
+				if (n % 2 == 1) n = n*3 + 1;
+				else n= n/2;
+				count ++;
+			}
+			maxi = max (maxi, count);	
 		}
-		printf("\n");
+		printf ("%d\n",maxi);	
 	}
 	return 0;
 }

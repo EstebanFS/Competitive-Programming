@@ -27,26 +27,25 @@ template <class T> int toInt(const T &x)
 { stringstream s; s << x; int r; s >> r; return r;}
 
 #define D(x) cout << #x " is " << x << endl
-
-void reverse(string word){
-	for (int i = word.size() - 1; i >= 0; --i)printf("%c", word[i]);
-}
+#define ll long long
 
 int main(){
-	string line;
-	while (getline (cin, line)){
-		stringstream ss(line);
-		string word;
-		ss >> word;
-		if (word.size() == 1)cout << word;
-		else reverse (word);
-		while (ss >> word){
-			printf(" ");
-			if (word.size() == 1)cout << word;
-			else reverse (word);	
+	ll n, t;
+	cin >> n >> t;
+	ll transport[n];
+	for(ll i = 0; i < n; ++i) cin >> transport[i];
+	bool can = false;
+	ll i = 0;
+	while(i <= (t-1)){
+	//	cout << "Entra" << endl;
+		if(i == (t-1)) {
+			can = true;
+			break;
 		}
-		printf("\n");
+		i += transport[i];
 	}
+	if(can) cout << "YES" << endl;
+	else cout << "NO" << endl;
 	return 0;
 }
 

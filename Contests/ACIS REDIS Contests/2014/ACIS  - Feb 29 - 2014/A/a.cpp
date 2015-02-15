@@ -28,28 +28,25 @@ template <class T> int toInt(const T &x)
 
 #define D(x) cout << #x " is " << x << endl
 
-void reverse(string word){
-	for (int i = word.size() - 1; i >= 0; --i)printf("%c", word[i]);
+float numerador;
+float denominador;
+int find(float num){
+    for(int i=1; i<1005; i++){
+        if(fmod(num*i,1) == 0){
+            numerador = num*i;
+            denominador = i;
+            return 0;  
+        }   
+    }
+    return 0;
 }
 
 int main(){
-	string line;
-	while (getline (cin, line)){
-		stringstream ss(line);
-		string word;
-		ss >> word;
-		if (word.size() == 1)cout << word;
-		else reverse (word);
-		while (ss >> word){
-			printf(" ");
-			if (word.size() == 1)cout << word;
-			else reverse (word);	
-		}
-		printf("\n");
-	}
-	return 0;
+    float ab, ac, bd;
+    while (cin >> ab>>ac>>bd){
+        double x=(ac)/((bd-ac)/ab);
+        find(x);
+        cout << numerador << "/" << denominador << endl;     
+    }  
+return 0;
 }
-
-
-
-

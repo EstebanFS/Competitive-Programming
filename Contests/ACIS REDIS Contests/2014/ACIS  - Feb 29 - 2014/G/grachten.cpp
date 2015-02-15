@@ -27,29 +27,15 @@ template <class T> int toInt(const T &x)
 { stringstream s; s << x; int r; s >> r; return r;}
 
 #define D(x) cout << #x " is " << x << endl
-
-void reverse(string word){
-	for (int i = word.size() - 1; i >= 0; --i)printf("%c", word[i]);
-}
-
 int main(){
-	string line;
-	while (getline (cin, line)){
-		stringstream ss(line);
-		string word;
-		ss >> word;
-		if (word.size() == 1)cout << word;
-		else reverse (word);
-		while (ss >> word){
-			printf(" ");
-			if (word.size() == 1)cout << word;
-			else reverse (word);	
-		}
-		printf("\n");
-	}
-	return 0;
+    int ab, ac, bd;
+    while (cin >> ab>>ac>>bd){
+        int num= ab*ac;
+        int deno = bd - ac;
+        int d = __gcd(num, deno);
+        if(ac==0)deno=bd,d=1;
+        cout << num/d << "/" << deno/d << endl;
+             
+    }  
+return 0;
 }
-
-
-
-

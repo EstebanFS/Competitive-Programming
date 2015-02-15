@@ -27,29 +27,27 @@ template <class T> int toInt(const T &x)
 { stringstream s; s << x; int r; s >> r; return r;}
 
 #define D(x) cout << #x " is " << x << endl
-
-void reverse(string word){
-	for (int i = word.size() - 1; i >= 0; --i)printf("%c", word[i]);
-}
+#define MAXN 3005
 
 int main(){
-	string line;
-	while (getline (cin, line)){
-		stringstream ss(line);
-		string word;
-		ss >> word;
-		if (word.size() == 1)cout << word;
-		else reverse (word);
-		while (ss >> word){
-			printf(" ");
-			if (word.size() == 1)cout << word;
-			else reverse (word);	
-		}
-		printf("\n");
-	}
+    int n;
+    bool ans[MAXN];
+    while(cin>>n){
+        int value1, value2;
+        for(int i=0; i<=n; ++i)ans[i]=false;
+        cin >> value1;
+        for(int i=1; i<n; ++i){
+            cin >> value2;
+            int result = abs(value1-value2);
+            ans[result] = true;
+            value1 = value2;
+        }
+        bool jolly = true;
+        for(int i=1; i<n; ++i)if(!ans[i])jolly=false;
+        if(jolly)cout << "Jolly" << endl;
+        else cout << "Not jolly" << endl;
+    }
 	return 0;
 }
-
-
 
 
