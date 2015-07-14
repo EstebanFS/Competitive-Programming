@@ -27,24 +27,11 @@ template <class T> int toInt(const T &x)
 { stringstream s; s << x; int r; s >> r; return r;}
 
 #define D(x) cout << #x " is " << x << endl
-
-void reverse(string x){
-	for(int i = x.size() - 1; i >= 0; --i) cout << x[i];
-}
-
-int main(){
-	string line;
-	while(getline(cin, line)){
-		string word;
-		for(int i = 0; i < line.size(); ++i){
-			if(line[i] == ' '){
-				reverse(word);
-				word = "";
-				cout << line[i];
-			} else word += line[i];
-		}
-		reverse(word);
-		cout << endl;
-	}
+#define pii pair<int, int>
+#define ll long long
+int main() {
+	string word;
+	cin >> word;
+	cout << (25 * (word.size() + 1)) + 1 << endl;
 	return 0;
 }
